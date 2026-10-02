@@ -67,3 +67,4 @@ export default function App(){
    {menu.type==="document"&&(()=>{const d=documents.find(x=>x.document_id===menu.id);return d?<><button onClick={()=>{setMenu(null);setSelectedDoc(d.document_id);setTab("chat")}}>Ask about paper</button><div/><button className="danger" onClick={()=>{setMenu(null);void removeDocument(d)}}>Remove</button></>:null})()}
   </div>}
  </div>
+}
