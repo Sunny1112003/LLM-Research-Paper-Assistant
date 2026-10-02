@@ -1,21 +1,32 @@
-import chromadb
-from sentence_transformers import SentenceTransformer
-
-client = chromadb.PersistentClient(path="chroma_db")
-
-collection = client.get_or_create_collection(
-    name="research_papers"
-)
-
-model = SentenceTransformer("all-MiniLM-L6-v2")
+from app.config import settings
+from app.services.embedding import get_embedding_model
+from app.services.vector_store import collection
 
 
-def retrieve_chunks(query: str, n_results=3):
-    query_embedding = model.encode(query).tolist()
+def retrieve_chunks(query: str, n_results: int | None = None,
+                    document_id: str | None = None) -> list[dict]:
+    if not query.strip():
+        return []
 
-    results = collection.query(
-        query_embeddings=[query_embedding],
-        n_results=n_results
-    )
+    top_k = max(1, min(n_results or settings.top_k, 10))
+    embedding = get_embedding_model().encode(
+        query, normalize_embeddings=True
+    ).tolist()
 
-    return results["documents"][0]
+    kwargs = {
+        "query_embeddings": [embedding],
+        "n_results": top_k,
+        "include": ["documents", "metadatas", "distances"],
+    }
+    if document_id:
+        kwargs["where"] = {"document_id": document_id}
+
+    result = collection.query(**kwargs)
+    documents = result.get("documents", [[]])[0]
+    metadatas = result.get("metadatas", [[]])[0]
+    distances = result.get("distances", [[]])[0]
+
+    return [
+        {"text": d, "metadata": m or {}, "distance": dist}
+        for d, m, dist in zip(documents, metadatas, distances)
+    ]
