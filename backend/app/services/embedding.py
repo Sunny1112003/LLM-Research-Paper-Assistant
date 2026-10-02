@@ -1,9 +1,16 @@
+from functools import lru_cache
+
 from sentence_transformers import SentenceTransformer
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
+from app.config import settings
 
 
-def generate_embeddings(chunks):
-    embeddings = model.encode(chunks)
+@lru_cache
+def get_embedding_model() -> SentenceTransformer:
+    return SentenceTransformer(settings.embedding_model)
 
-    return embeddings
+
+def generate_embeddings(chunks: list[str]):
+    if not chunks:
+        return []
+    return get_embedding_model().encode(chunks, normalize_embeddings=True)
