@@ -86,18 +86,18 @@ async function request<T>(
   return payload as T;
 }
 
-function listPayload<T>(payload: T[] | { workspaces?: T[]; documents?: T[]; chats?: T[]; messages?: T[] }): T[] {
-  if (Array.isArray(payload)) return payload;
-  if ("workspaces" in payload && Array.isArray(payload.workspaces)) return payload.workspaces;
-  if ("documents" in payload && Array.isArray(payload.documents)) return payload.documents;
-  if ("chats" in payload && Array.isArray(payload.chats)) return payload.chats;
-  if ("messages" in payload && Array.isArray(payload.messages)) return payload.messages;
+function listPayload<T>(payload: unknown, key: "workspaces" | "documents" | "chats" | "messages"): T[] {
+  if (Array.isArray(payload)) return payload as T[];
+  if (typeof payload === "object" && payload !== null) {
+    const value = (payload as Record<string, unknown>)[key];
+    if (Array.isArray(value)) return value as T[];
+  }
   return [];
 }
 
 export async function getWorkspaces(): Promise<Workspace[]> {
   const payload = await request<Workspace[] | { workspaces: Workspace[] }>("/workspaces");
-  return listPayload(payload);
+  return listPayload<Workspace>(payload, "workspaces");
 }
 
 export async function createWorkspace(name: string): Promise<Workspace> {
@@ -125,7 +125,7 @@ export async function getDocuments(workspaceId: string): Promise<Document[]> {
   const payload = await request<Document[] | { documents: Document[] }>(
     `/workspaces/${encodeURIComponent(workspaceId)}/documents`,
   );
-  return listPayload(payload);
+  return listPayload<Document>(payload, "documents");
 }
 
 export async function uploadDocument(workspaceId: string, file: File): Promise<Document> {
@@ -141,7 +141,7 @@ export async function getChats(workspaceId: string): Promise<Chat[]> {
   const payload = await request<Chat[] | { chats: Chat[] }>(
     `/workspaces/${encodeURIComponent(workspaceId)}/chats`,
   );
-  return listPayload(payload);
+  return listPayload<Chat>(payload, "chats");
 }
 
 export async function createChat(workspaceId: string, title: string): Promise<Chat> {
@@ -169,7 +169,7 @@ export async function getMessages(chatId: string): Promise<Message[]> {
   const payload = await request<Message[] | { messages: Message[] }>(
     `/chats/${encodeURIComponent(chatId)}/messages`,
   );
-  return listPayload(payload);
+  return listPayload<Message>(payload, "messages");
 }
 
 export async function sendMessage(
