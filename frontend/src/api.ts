@@ -69,9 +69,12 @@ async function request<T>(
   });
 
   const contentType = response.headers.get("content-type") || "";
-  const payload = contentType.includes("application/json")
-    ? await response.json()
-    : await response.text();
+  const payload =
+    response.status === 204
+      ? undefined
+      : contentType.includes("application/json")
+        ? await response.json()
+        : await response.text();
 
   if (!response.ok) {
     const detail =
