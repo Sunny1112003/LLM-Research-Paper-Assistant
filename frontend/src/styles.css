@@ -13,3 +13,31 @@
 
 /* Chat navigation: clear visual distinction from workspaces */
 .chats-label{margin-top:4px}.chat-list-sidebar{display:flex;flex-direction:column;gap:2px;max-height:190px;overflow:auto}.chat-nav-item{display:flex;align-items:center;position:relative;border-radius:8px}.chat-nav-item.selected{background:#8d183f}.chat-nav-row{flex:1;min-width:0;border:0;background:transparent;color:#fff;display:flex;align-items:center;gap:7px;text-align:left;padding:9px 11px;border-radius:8px;font-size:11px}.chat-nav-row span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.chat-nav-row:hover{background:#741033}.chat-nav-item.selected .chat-nav-row:hover{background:transparent}.chat-more-button{width:30px;height:30px;flex:0 0 30px;border:0;background:transparent;color:#e6cbd3;display:grid;place-items:center;border-radius:6px}.chat-more-button:hover{background:#ffffff18;color:#fff}.chat-nav-item.selected .chat-more-button{color:#ffd6a8}.chat-list-sidebar .pin-mark{margin-left:auto}
+
+/* High-contrast dark-mode controls */
+:root[data-theme="dark"] .topbar,
+:root[data-theme="dark"] .tabs-row,
+:root[data-theme="dark"] .chat-controls>button,
+:root[data-theme="dark"] .composer,
+:root[data-theme="dark"] .search,
+:root[data-theme="dark"] .source-card,
+:root[data-theme="dark"] .document-grid article,
+:root[data-theme="dark"] .insight-grid article,
+:root[data-theme="dark"] .notes textarea{border-color:#6b5961}
+:root[data-theme="dark"] .chat-controls>button,
+:root[data-theme="dark"] .suggestions button,
+:root[data-theme="dark"] .document-grid button,
+:root[data-theme="dark"] .attach,
+:root[data-theme="dark"] .back,
+:root[data-theme="dark"] .evidence-tabs button,
+:root[data-theme="dark"] .tabs-row nav button{color:#f8eef1}
+:root[data-theme="dark"] .chat-controls>button:hover,
+:root[data-theme="dark"] .suggestions button:hover,
+:root[data-theme="dark"] .document-grid button:hover,
+:root[data-theme="dark"] .attach:hover,
+:root[data-theme="dark"] .source-card:hover{border-color:#b34c70;background:#21191d;color:#fff}
+:root[data-theme="dark"] .chat-controls>button:disabled{border-color:#51434a;color:#8f8086}
+:root[data-theme="dark"] .composer:focus-within,
+:root[data-theme="dark"] .search:focus-within{border-color:#b34c70;box-shadow:0 0 0 2px #b34c7026}
+:root[data-theme="dark"] .tabs-row nav button.active,
+:root[data-theme="dark"] .evidence-tabs button.active{color:#e47a9b;border-color:#e47a9b}
