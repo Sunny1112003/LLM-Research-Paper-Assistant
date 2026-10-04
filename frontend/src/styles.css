@@ -157,3 +157,42 @@
   fill:none !important;
   opacity:1 !important;
 }
+
+
+/* Light theme only: improve contrast for search, theme toggle, and New Chat.
+   Dark theme is intentionally untouched. */
+:root:not([data-theme="dark"]) .search {
+  color:#650b2d !important;
+  border-color:#cdb9c0 !important;
+  background:#fffdf9 !important;
+}
+:root:not([data-theme="dark"]) .search > svg,
+:root:not([data-theme="dark"]) .search > svg * {
+  color:#650b2d !important;
+  stroke:#650b2d !important;
+  opacity:1 !important;
+}
+:root:not([data-theme="dark"]) .theme-toggle {
+  background:#650b2d !important;
+  color:#ffffff !important;
+}
+:root:not([data-theme="dark"]) .theme-toggle svg,
+:root:not([data-theme="dark"]) .theme-toggle svg * {
+  color:#ffffff !important;
+  stroke:#ffffff !important;
+  opacity:1 !important;
+}
+:root:not([data-theme="dark"]) .theme-toggle span {
+  background:#ffffff !important;
+}
+:root:not([data-theme="dark"]) .chat-controls > button:first-child {
+  background:#650b2d !important;
+  color:#ffffff !important;
+  border-color:#650b2d !important;
+}
+:root:not([data-theme="dark"]) .chat-controls > button:first-child svg,
+:root:not([data-theme="dark"]) .chat-controls > button:first-child svg * {
+  color:#ffffff !important;
+  stroke:#ffffff !important;
+  opacity:1 !important;
+}
