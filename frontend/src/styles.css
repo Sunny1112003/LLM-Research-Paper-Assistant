@@ -106,3 +106,37 @@
 :root[data-theme="dark"] .send svg [fill="currentColor"] {
   fill:#ffffff !important;
 }
+
+
+/* Preserve the original light theme controls exactly and keep disabled send readable */
+:root:not([data-theme="dark"]) .attach,
+:root:not([data-theme="dark"]) .chat-controls > button,
+:root:not([data-theme="dark"]) .more-button,
+:root:not([data-theme="dark"]) .chat-more-button,
+:root:not([data-theme="dark"]) .card-more,
+:root:not([data-theme="dark"]) .inline-more {
+  color:#241c1f !important;
+  opacity:1 !important;
+}
+:root:not([data-theme="dark"]) .attach svg,
+:root:not([data-theme="dark"]) .chat-controls > button svg,
+:root:not([data-theme="dark"]) .more-button svg,
+:root:not([data-theme="dark"]) .chat-more-button svg,
+:root:not([data-theme="dark"]) .card-more svg,
+:root:not([data-theme="dark"]) .inline-more svg {
+  color:currentColor !important;
+  opacity:1 !important;
+}
+:root:not([data-theme="dark"]) .send {
+  color:#fff !important;
+  opacity:1 !important;
+}
+:root:not([data-theme="dark"]) .send svg,
+:root:not([data-theme="dark"]) .send svg * {
+  color:#fff !important;
+  stroke:#fff !important;
+  opacity:1 !important;
+}
+:root:not([data-theme="dark"]) .send:disabled {
+  opacity:.65 !important;
+}
