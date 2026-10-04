@@ -191,6 +191,17 @@ export async function sendMessage(
   );
 }
 
+export async function getNotes(workspaceId: string): Promise<{ content: string }> {
+  return request<{ content: string }>(`/workspaces/${encodeURIComponent(workspaceId)}/notes`);
+}
+
+export async function saveNotes(workspaceId: string, content: string): Promise<{ content: string }> {
+  return request<{ content: string }>(`/workspaces/${encodeURIComponent(workspaceId)}/notes`, {
+    method: "PUT",
+    body: JSON.stringify({ content }),
+  });
+}
+
 export async function deleteDocument(documentId: string): Promise<void> {
   await request<unknown>(`/documents/${encodeURIComponent(documentId)}`, {
     method: "DELETE",
