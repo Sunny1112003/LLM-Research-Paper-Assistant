@@ -62,3 +62,47 @@
   color:#fff !important;
   stroke:#fff !important;
 }
+
+
+/* Dark theme icon visibility: navigation/action symbols only */
+:root[data-theme="dark"] .topbar svg,
+:root[data-theme="dark"] .tabs-row svg,
+:root[data-theme="dark"] .chat-controls svg,
+:root[data-theme="dark"] .composer svg,
+:root[data-theme="dark"] .search svg,
+:root[data-theme="dark"] .nav-row svg,
+:root[data-theme="dark"] .nav-doc svg,
+:root[data-theme="dark"] .more-button svg,
+:root[data-theme="dark"] .chat-nav-row svg,
+:root[data-theme="dark"] .chat-more-button svg,
+:root[data-theme="dark"] .card-more svg,
+:root[data-theme="dark"] .inline-more svg,
+:root[data-theme="dark"] .back svg,
+:root[data-theme="dark"] .document-grid button svg {
+  color:#ffffff !important;
+  opacity:1 !important;
+}
+:root[data-theme="dark"] .topbar svg *,
+:root[data-theme="dark"] .tabs-row svg *,
+:root[data-theme="dark"] .chat-controls svg *,
+:root[data-theme="dark"] .composer svg *,
+:root[data-theme="dark"] .search svg *,
+:root[data-theme="dark"] .nav-row svg *,
+:root[data-theme="dark"] .nav-doc svg *,
+:root[data-theme="dark"] .more-button svg *,
+:root[data-theme="dark"] .chat-nav-row svg *,
+:root[data-theme="dark"] .chat-more-button svg *,
+:root[data-theme="dark"] .card-more svg *,
+:root[data-theme="dark"] .inline-more svg *,
+:root[data-theme="dark"] .back svg *,
+:root[data-theme="dark"] .document-grid button svg * {
+  stroke:currentColor !important;
+  fill:none !important;
+}
+:root[data-theme="dark"] .send svg *,
+:root[data-theme="dark"] .send svg circle {
+  stroke:#ffffff !important;
+}
+:root[data-theme="dark"] .send svg [fill="currentColor"] {
+  fill:#ffffff !important;
+}
