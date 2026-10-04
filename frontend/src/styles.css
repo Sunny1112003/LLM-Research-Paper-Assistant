@@ -140,3 +140,20 @@
 :root:not([data-theme="dark"]) .send:disabled {
   opacity:.65 !important;
 }
+
+
+/* Light theme send control: keep a strong wine button and crisp white symbol */
+:root:not([data-theme="dark"]) .send,
+:root:not([data-theme="dark"]) .send:disabled {
+  background:#650b2d !important;
+  color:#ffffff !important;
+  border:0 !important;
+  opacity:1 !important;
+}
+:root:not([data-theme="dark"]) .send svg,
+:root:not([data-theme="dark"]) .send svg * {
+  color:#ffffff !important;
+  stroke:#ffffff !important;
+  fill:none !important;
+  opacity:1 !important;
+}
