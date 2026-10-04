@@ -69,9 +69,12 @@ async function request<T>(
   });
 
   const contentType = response.headers.get("content-type") || "";
-  const payload = contentType.includes("application/json")
-    ? await response.json()
-    : await response.text();
+  const payload =
+    response.status === 204
+      ? undefined
+      : contentType.includes("application/json")
+        ? await response.json()
+        : await response.text();
 
   if (!response.ok) {
     const detail =
@@ -189,6 +192,17 @@ export async function sendMessage(
       }),
     },
   );
+}
+
+export async function getNotes(workspaceId: string): Promise<{ content: string }> {
+  return request<{ content: string }>(`/workspaces/${encodeURIComponent(workspaceId)}/notes`);
+}
+
+export async function saveNotes(workspaceId: string, content: string): Promise<{ content: string }> {
+  return request<{ content: string }>(`/workspaces/${encodeURIComponent(workspaceId)}/notes`, {
+    method: "PUT",
+    body: JSON.stringify({ content }),
+  });
 }
 
 export async function deleteDocument(documentId: string): Promise<void> {
