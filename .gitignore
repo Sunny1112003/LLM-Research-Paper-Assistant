@@ -11,3 +11,5 @@ chroma_db/
 .DS_Store
 frontend/node_modules/
 frontend/dist/
+
+backend/test_chroma_db/
