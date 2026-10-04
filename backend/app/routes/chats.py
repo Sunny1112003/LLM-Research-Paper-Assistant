@@ -79,7 +79,8 @@ def send_message(chat_id: str, payload: MessageCreate, db: Session = Depends(get
     if not question:
         raise HTTPException(422, "Question cannot be empty.")
 
-    history_rows = db.scalars(select(Message).where(Message.chat_id == chat_id).order_by(Message.created_at.asc()).limit(20)).all()
+    history_rows = db.scalars(select(Message).where(Message.chat_id == chat_id).order_by(Message.created_at.desc()).limit(20)).all()
+    history_rows.reverse()
     user_message = Message(chat_id=chat_id, role="user", content=question)
     db.add(user_message)
     db.flush()
